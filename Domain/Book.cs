@@ -9,4 +9,5 @@ public class Book
     public string Genre { get; set; }
     public bool Availability { get; set; }
     public Patron? ReservedBy { get; set; }
+    
 }

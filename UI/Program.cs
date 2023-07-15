@@ -2,73 +2,99 @@
 using Domain;
 public class UI
 {
+    public static Library library = new();
     public static void Main(string[] args)
     {
-        Library library = new();
         WriteLine();
-        ShowInfo(" Welcome to Our Library");
-        switch(MainOptions().Key)
-        {
-            case ConsoleKey.NumPad1:
-            case ConsoleKey.D1:
-                ManageTheLibrary();
-                break;
-            case ConsoleKey.NumPad2:
-            case ConsoleKey.D2:
-                ManagePatrons();
-                break;
-        }
+        ForegroundColor = ConsoleColor.Green;
+        WriteLine("Welcome to our Library!");
+        WriteLine();
+        MainOptions();
     }
 
-    static void ShowInfo(string message)
+
+    static void MainOptions()
     {
         WriteLine();
-        ConsoleColor previous = ForegroundColor;
-        ForegroundColor = ConsoleColor.DarkGreen;
-        WriteLine(message);
         WriteLine();
-        ForegroundColor = previous;
-    }
-    
-    static ConsoleKeyInfo MainOptions()
-    {
-        ConsoleColor previous = Console.ForegroundColor;
-        ForegroundColor = ConsoleColor.Blue;
+        ForegroundColor = ConsoleColor.White;
         WriteLine($"1)Manage The Library");
         WriteLine($"2)Manage Patrons");
-        ForegroundColor = previous;
-        return ReadKey();
-    }
-    static ConsoleKeyInfo ManageTheLibrary()
-    {
-        ConsoleColor previous = Console.ForegroundColor;
-        ForegroundColor = ConsoleColor.DarkBlue;
-        WriteLine($"\t1)Add a Book");
-        WriteLine($"\t2)Add a Patron");
-        WriteLine($"\t3)Search for a book by title");
-        WriteLine($"\t4)Search for a book by author");
-        WriteLine($"\t5)Search for a patron by name");
-        WriteLine($"\t6)Generate overdue book report");
-        WriteLine($"\t7)Exit the Program");
-        ForegroundColor = previous;
-        return new ConsoleKeyInfo();
-    }
-    static ConsoleKeyInfo ManagePatrons()
-    {
-        ConsoleColor previous = ForegroundColor;
-        ForegroundColor = ConsoleColor.DarkBlue;
-        WriteLine("\tList of Available Patrons:");
-        //TODO: list of Patrons
-        WriteLine("\tWhat Patron do you want to access?");
-        //WriteLine($"\t\t1)Add a Book");
-        //WriteLine($"\t\t2)Add a Patron");
-        //WriteLine($"\t\t3)Search for a book by title");
-        //WriteLine($"\t\t4)Search for a book by author");
-        //WriteLine($"\t\t5)Search for a patron by name");
-        //WriteLine($"\t\t6)Generate overdue book report");
-        //WriteLine($"\t\t7)Exit the Program");
-        ForegroundColor = previous;
-        return new ConsoleKeyInfo();
-    }
+        WriteLine($"3)Exit the Program");
+        switch (ReadKey().Key)
+        {
+            case ConsoleKey.D1:
+            case ConsoleKey.NumPad1:
+                LibraryMenu();
+                break;
+            case ConsoleKey.D2:
+            case ConsoleKey.NumPad2:
+                ChoosePatron();
+                break;
+        }
+        static void LibraryMenu()
+        {
+            WriteLine();
+            WriteLine();
+            ForegroundColor = ConsoleColor.Blue;
+            WriteLine("What do you want to do?");
+            ForegroundColor = ConsoleColor.White;
+            WriteLine($"1)Add a Book");
+            WriteLine($"2)Add a Patron");
+            WriteLine($"3)Search for a book by title");
+            WriteLine($"4)Search for a book by author");
+            WriteLine($"5)Search for a patron by name");
+            WriteLine($"6)Generate overdue book report");
+            WriteLine($"7)Last Menu");
+            switch (ReadKey().Key)
+            {
+                case ConsoleKey.D1:
+                case ConsoleKey.NumPad1:
+                    AddBook();
+                    break;
+                case ConsoleKey.D2:
+                case ConsoleKey.NumPad2:
+                    //AddPatron();
+                    break;
+                case ConsoleKey.D3:
+                case ConsoleKey.NumPad3:
+                    //SearchBookByTitle();
+                    break;
+                case ConsoleKey.D4:
+                case ConsoleKey.NumPad4:
+                    //SearchBookByAuthor();
+                    break;
+                case ConsoleKey.D5:
+                case ConsoleKey.NumPad5:
+                    //SearchPatronByName();
+                    break;
+                case ConsoleKey.D6:
+                case ConsoleKey.NumPad6:
+                    //GenerateBookReport();
+                    break;
+                case ConsoleKey.D7:
+                case ConsoleKey.NumPad7:
+                    MainOptions();
+                    break;
+            }
+            
 
+        }
+        static void ChoosePatron()
+        {
+            WriteLine();
+            WriteLine();
+            ForegroundColor = ConsoleColor.DarkBlue;
+            Library.DisplayPatrons("List of Available Patrons:", library.Patrons);
+            WriteLine("What Patron do you want to manage?");
+
+        }
+        static void AddBook()
+        {
+            WriteLine();
+            WriteLine("Enter the Book's details:");
+
+        }
+
+    }
 }
