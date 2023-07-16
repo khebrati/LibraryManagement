@@ -1,4 +1,5 @@
 ﻿global using static System.Console;
+global using static System.Convert;
 using Domain;
 public class UI
 {
@@ -8,7 +9,6 @@ public class UI
         WriteLine();
         ForegroundColor = ConsoleColor.Green;
         WriteLine("Welcome to our Library!");
-        WriteLine();
         MainOptions();
     }
 
@@ -31,14 +31,16 @@ public class UI
             case ConsoleKey.NumPad2:
                 ChoosePatron();
                 break;
+            default:
+                DisplayError("you can only choose from the list above! Try again: ");
+                MainOptions();
+                break;
         }
         static void LibraryMenu()
         {
             WriteLine();
             WriteLine();
-            ForegroundColor = ConsoleColor.Blue;
-            WriteLine("What do you want to do?");
-            ForegroundColor = ConsoleColor.White;
+            DisplayInfo("What do you want to do?");
             WriteLine($"1)Add a Book");
             WriteLine($"2)Add a Patron");
             WriteLine($"3)Search for a book by title");
@@ -77,7 +79,7 @@ public class UI
                     MainOptions();
                     break;
             }
-            
+
 
         }
         static void ChoosePatron()
@@ -91,10 +93,76 @@ public class UI
         }
         static void AddBook()
         {
+            Book book = new();
             WriteLine();
-            WriteLine("Enter the Book's details:");
-
+            DisplayInfo("Enter the Book's details:");
+            Write("Title: ");
+            book.Title = ReadNotEmptyString();
+            Write("Id: ");
+            book.BookId = ReadNotEmptyInt();
+            Write("Author: ");
+            book.Author= ReadNotEmptyString();
+            Write("ISBN: ");
+            book.ISBN = ReadNotEmptyInt();
+            Write("Genre: ");
+            book.Genre = ReadNotEmptyString();
+            book.Availability = true;
+            DisplaySuccess("Book Created Sucsessfully");
         }
+        static string ReadNotEmptyString()
+        {
+            string? input;
+            while (true)
+            {
+                input = ReadLine();
+                if (input is not null && input != "")
+                {
+                    break;
+                }
+                DisplayError("Input can not be null! try again:");
+               
+            }
+            return input;
+        }
+        static int ReadNotEmptyInt()
+        {
+            int input;
+            while(true)
+            {
+                try
+                {
+                    input = ToInt32(ReadLine());
+                    break;
+                }
+                catch
+                {
+                    DisplayError("your input must be an integer, try again: ");
+                }
+            }
+            return input;
+        }
+        static void DisplayError(string message)
+        {
+            ConsoleColor previous = ForegroundColor;
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine(message);
+            ForegroundColor = previous;
+        }
+        static void DisplayInfo(string message)
+        {
+            ConsoleColor previous = ForegroundColor;
+            ForegroundColor = ConsoleColor.Blue;
+            WriteLine(message);
+            ForegroundColor = previous;
+        }
+        static void DisplaySuccess(string message)
+        {
+            ConsoleColor previous = ForegroundColor;
+            ForegroundColor = ConsoleColor.Green;
+            WriteLine(message);
+            ForegroundColor = previous;
+        }
+
 
     }
 }
