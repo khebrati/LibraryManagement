@@ -13,7 +13,6 @@ public class Program
         WriteLine();
         ForegroundColor = ConsoleColor.Green;
         WriteLine("Welcome to our Library!");
-        WriteInfo("At any Time you can go to last menu by writing b and hitting Enter");
         MainMenu();
     }
 
