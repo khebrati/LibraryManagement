@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
-      "Helpers/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/Helpers.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Helpers.dll": {}
-        }
-      }
-    }
+    "net7.0": {}
   },
-  "libraries": {
-    "Helpers/1.0.0": {
-      "type": "project",
-      "path": "../Helpers/Helpers.csproj",
-      "msbuildProject": "../Helpers/Helpers.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net7.0": [
-      "Helpers >= 1.0.0"
-    ]
+    "net7.0": []
   },
   "packageFolders": {
     "C:\\Users\\erfan\\.nuget\\packages\\": {}
@@ -52,11 +33,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "C:\\Users\\erfan\\Drive\\Source\\LibraryManagement\\Helpers\\Helpers.csproj": {
-              "projectPath": "C:\\Users\\erfan\\Drive\\Source\\LibraryManagement\\Helpers\\Helpers.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

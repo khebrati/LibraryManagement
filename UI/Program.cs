@@ -1,7 +1,7 @@
 ﻿global using static System.Console;
 global using static System.Convert;
 global using static Helpers.Reader;
-global using static Helpers.MessageDisplayer;
+global using static Helpers.Displayer;
 using Domain;
 using System.Text.RegularExpressions;
 namespace UI;
@@ -95,7 +95,8 @@ partial class Program
         WriteLine();
         WriteLine();
         ForegroundColor = ConsoleColor.DarkBlue;
-        Library.DisplayPatrons("List of Available Patrons:", library.Patrons);
+        WriteLine("List of Available Patrons:");
+        DisplayPatrons(library.Patrons);
         WriteLine("What Patron do you want to manage?");
 
     }

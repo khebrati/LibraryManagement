@@ -5,24 +5,11 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Helpers": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/Domain.dll": {}
-        }
-      },
-      "Helpers/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/Helpers.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Helpers.dll": {}
         }
       }
     }
@@ -32,17 +19,11 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
-    },
-    "Helpers/1.0.0": {
-      "type": "project",
-      "path": "../Helpers/Helpers.csproj",
-      "msbuildProject": "../Helpers/Helpers.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "Domain >= 1.0.0",
-      "Helpers >= 1.0.0"
+      "Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -74,9 +55,6 @@
           "projectReferences": {
             "C:\\Users\\erfan\\Drive\\Source\\LibraryManagement\\Domain\\Domain.csproj": {
               "projectPath": "C:\\Users\\erfan\\Drive\\Source\\LibraryManagement\\Domain\\Domain.csproj"
-            },
-            "C:\\Users\\erfan\\Drive\\Source\\LibraryManagement\\Helpers\\Helpers.csproj": {
-              "projectPath": "C:\\Users\\erfan\\Drive\\Source\\LibraryManagement\\Helpers\\Helpers.csproj"
             }
           }
         }
