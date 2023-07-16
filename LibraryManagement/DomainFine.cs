@@ -1,7 +1,7 @@
 namespace Domain;
 public struct DomainFine
 {
-    public int FineId { get; init; }
+    public string FineId { get; init; }
     public Patron Patron { get; set; }
     public int FineAmount { get; set; }
     public bool PaymentStatus { get; set; }

@@ -19,28 +19,12 @@ namespace Helpers
                 {
                     break;
                 }
-                DisplayError("Input can not be null! try again:");
+                WriteError("Input can not be null! try again:");
 
             }
             return input;
         }
-        public static int ReadNotEmptyInt()
-        {
-            int input;
-            while (true)
-            {
-                try
-                {
-                    input = ToInt32(ReadLine());
-                    break;
-                }
-                catch
-                {
-                    DisplayError("your input must be an integer, try again: ");
-                }
-            }
-            return input;
-        }
+        
         public static string ReadEmail()
         {
             string? input;
@@ -51,7 +35,7 @@ namespace Helpers
                 {
                     break;
                 }
-                DisplayError("this is not a valid email! your email should look like this:\n"
+                WriteError("this is not a valid email! your email should look like this:\n"
                     + "something@something.com");
 
             }

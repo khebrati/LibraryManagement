@@ -13,11 +13,11 @@ public class Program
         WriteLine();
         ForegroundColor = ConsoleColor.Green;
         WriteLine("Welcome to our Library!");
-        MainOptions();
+        MainMenu();
     }
 
 
-    public static void MainOptions()
+    public static void MainMenu()
     {
         WriteLine();
         WriteLine();
@@ -33,11 +33,11 @@ public class Program
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
-                ChoosePatron();
+                PatronManagementMenu();
                 break;
             default:
-                DisplayError("you can only choose from the list above! Try again: ");
-                MainOptions();
+                WriteError("you can only choose from the list above! Try again: ");
+                MainMenu();
                 break;
         }
 
@@ -46,7 +46,7 @@ public class Program
     {
         WriteLine();
         WriteLine();
-        DisplayInfo("What do you want to do?");
+        WriteInfo("What do you want to do?");
         WriteLine($"1)Add a Book");
         WriteLine($"2)Add a Patron");
         WriteLine($"3)Search for a book by title");
@@ -82,23 +82,34 @@ public class Program
                 break;
             case ConsoleKey.D7:
             case ConsoleKey.NumPad7:
-                MainOptions();
+                MainMenu();
+                break;
+            default:
+                WriteError("You can only choose from the above list!");
                 break;
         }
 
 
     }
     
-    
-    public static void ChoosePatron()
+    public static Patron ChoosePatron()
     {
         WriteLine();
-        WriteLine();
-        ForegroundColor = ConsoleColor.DarkBlue;
         WriteLine("List of Available Patrons:");
         DisplayPatrons(library.Patrons);
-        WriteLine("What Patron do you want to manage?");
-
+        WriteInfo("enter the patron to manage(Id, Name or ...) : ");
+        Patron? toBeFound = new();
+        while(!library.TryFindPatron(ReadNotEmptyString(), out toBeFound))
+        {
+            WriteError("No patron with such specifications exist. Try again: ");
+        }
+        return toBeFound!;
+    }
+    public static void PatronManagementMenu()
+    {
+        Patron patron = ChoosePatron();
+        WriteLine();
+        WriteInfo("Patrons Management Menu:");
     }
     
     

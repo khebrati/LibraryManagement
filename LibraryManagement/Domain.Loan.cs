@@ -1,7 +1,7 @@
 namespace Domain;
 public class Loan
 {
-    public int LoanId { get; set; }
+    public string LoanId { get; set; }
     public Book Book { get; set; }
     public Patron Patron { get; set; }
     public DateTime LoanDate {get; set;}

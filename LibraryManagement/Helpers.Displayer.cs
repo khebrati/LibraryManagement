@@ -9,21 +9,21 @@ namespace Helpers
 {
     public static class Displayer
     {
-        public static void DisplayError(string message)
+        public static void WriteError(string message)
         {
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Red;
             WriteLine(message);
             ForegroundColor = previous;
         }
-        public static void DisplayInfo(string message)
+        public static void WriteInfo(string message)
         {
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Blue;
             WriteLine(message);
             ForegroundColor = previous;
         }
-        public static void DisplaySuccess(string message)
+        public static void WriteSuccess(string message)
         {
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Green;
@@ -32,6 +32,7 @@ namespace Helpers
         }
         public static void DisplayPatrons(List<Patron> patrons)
         {
+            WriteInfo("Available Patrons");
             string fullLine = new string('-', WindowWidth);
             WriteLine(fullLine);
             ConsoleColor previous = ForegroundColor;
@@ -48,6 +49,7 @@ namespace Helpers
         }
         public static void DisplayBooks(List<Book> books)
         {
+            WriteInfo("Available Books");
             string fullLine = new string('-', WindowWidth);
             WriteLine(fullLine);
             ConsoleColor previous = ForegroundColor;

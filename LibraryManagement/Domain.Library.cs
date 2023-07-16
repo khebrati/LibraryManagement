@@ -18,44 +18,68 @@ public class Library
     {
         Book book = new();
         WriteLine();
-        DisplayInfo("Enter the Book's details:");
+        WriteInfo("Enter the Book's details:");
         Write("Title: ");
         book.Title = ReadNotEmptyString();
         Write("Id: ");
-        book.BookId = ReadNotEmptyInt();
+        book.BookId = ReadNotEmptyString();
         Write("Author: ");
         book.Author = ReadNotEmptyString();
         Write("ISBN: ");
-        book.ISBN = ReadNotEmptyInt();
+        book.ISBN = ReadNotEmptyString();
         Write("Genre: ");
         book.Genre = ReadNotEmptyString();
         book.Availability = true;
         Books.Add(book);
-        DisplaySuccess("Book was Added Sucsessfully");
-        DisplayInfo("List of Current Books:");
+        WriteSuccess("Book was Added Sucsessfully");
         DisplayBooks(Books);
-        LibraryMenu();
+        MainMenu();
     }
     public void AddPatron()
     {
         Patron patron = new();
         WriteLine();
-        DisplayInfo("Enter the Patrons's details:");
+        WriteInfo("Enter the Patrons's details:");
         Write("Name: ");
         patron.Name = ReadNotEmptyString();
         Write("Id: ");
-        patron.PatronId = ReadNotEmptyInt();
+        patron.PatronId = ReadNotEmptyString();
         Write("Email: ");
         patron.Email = ReadNotEmptyString();
         Write("Phone: ");
-        patron.Phone = ReadNotEmptyInt();
+        patron.Phone = ReadNotEmptyString();
         Write("Address: ");
         patron.Address = ReadNotEmptyString();
         Patrons.Add(patron);
-        DisplaySuccess("Patron was Added Sucsessfully");
-        DisplayInfo("List of Current Patrons:");
+        WriteSuccess("Patron was Added Sucsessfully");
         DisplayPatrons(Patrons);
-        LibraryMenu();
+        MainMenu();
+    }
+    public bool TryFindBook(string key, out Book? foundBook)
+    {
+        foreach (Book b in Books)
+        {
+            if (b.Author == key || b.BookId == key || b.Title == key || b.ISBN == key || b.Genre == key)
+            {
+                foundBook = b;
+                return true;
+            }
+        }
+        foundBook = null;
+        return false;
+    }
+    public bool TryFindPatron(string key, out Patron? foundPatron)
+    {
+        foreach (Patron p in Patrons)
+        {
+            if (p.Name == key || p.PatronId == key || p.Phone == key || p.Address == key || p.Email == key)
+            {
+                foundPatron = p;
+                return true;
+            }
+        }
+        foundPatron = null;
+        return false;
     }
 
 }
