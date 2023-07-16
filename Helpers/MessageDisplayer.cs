@@ -1,28 +1,30 @@
-﻿using System;
+﻿global using static System.Console;
+global using static System.Convert;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UI
+namespace Helpers
 {
-    partial class Program
+    public static  class MessageDisplayer
     {
-        static void DisplayError(string message)
+        public static void DisplayError(string message)
         {
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Red;
             WriteLine(message);
             ForegroundColor = previous;
         }
-        static void DisplayInfo(string message)
+        public static void DisplayInfo(string message)
         {
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Blue;
             WriteLine(message);
             ForegroundColor = previous;
         }
-        static void DisplaySuccess(string message)
+        public static void DisplaySuccess(string message)
         {
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Green;

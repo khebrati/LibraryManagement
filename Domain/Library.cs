@@ -1,4 +1,7 @@
 global using static System.Console;
+global using static System.Convert;
+global using static Helpers.MessageDisplayer;
+global using static Helpers.Reader;
 namespace Domain;
 public class Library
 {
@@ -9,16 +12,7 @@ public class Library
         Patrons = new();
         Books = new();
     }
-    public void AddBook()
-    {
-        //asks user to enter details of book in a specific format
-        //parses the string and add related object + input validation
-    }
-    public void AddPatron()
-    {
-        //asks user to enter details of Patron in a specific format
-        //parses the string and add related object
-    }
+
    public static void DisplayPatrons(string message,List<Patron> patrons)
     {
         WriteLine(message);
@@ -35,6 +29,43 @@ public class Library
         }
         WriteLine(fullLine);
         WriteLine();
+    }
+    public void AddBook()
+    {
+        Book book = new();
+        WriteLine();
+        DisplayInfo("Enter the Book's details:");
+        Write("Title: ");
+        book.Title = ReadNotEmptyString();
+        Write("Id: ");
+        book.BookId = ReadNotEmptyInt();
+        Write("Author: ");
+        book.Author = ReadNotEmptyString();
+        Write("ISBN: ");
+        book.ISBN = ReadNotEmptyInt();
+        Write("Genre: ");
+        book.Genre = ReadNotEmptyString();
+        book.Availability = true;
+        Books.Add(book);
+        DisplaySuccess("Book was Added Sucsessfully");
+    }
+    public void AddPatron()
+    {
+        Patron patron = new();
+        WriteLine();
+        DisplayInfo("Enter the Patrons's details:");
+        Write("Name: ");
+        patron.Name = ReadNotEmptyString();
+        Write("Id: ");
+        patron.PatronId = ReadNotEmptyInt();
+        Write("Email: ");
+        patron.Email = ReadNotEmptyString();
+        Write("Phone: ");
+        patron.Phone = ReadNotEmptyInt();
+        Write("Address: ");
+        patron.Address = ReadNotEmptyString();
+        Patrons.Add(patron);
+        DisplaySuccess("Book Created Sucsessfully");
     }
 
 }

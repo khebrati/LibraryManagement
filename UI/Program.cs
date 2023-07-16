@@ -1,5 +1,7 @@
 ﻿global using static System.Console;
 global using static System.Convert;
+global using static Helpers.Reader;
+global using static Helpers.MessageDisplayer;
 using Domain;
 using System.Text.RegularExpressions;
 namespace UI;
@@ -56,11 +58,11 @@ partial class Program
         {
             case ConsoleKey.D1:
             case ConsoleKey.NumPad1:
-                AddBook();
+                library.AddBook();
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
-                AddPatron();
+                library.AddPatron();
                 break;
             case ConsoleKey.D3:
             case ConsoleKey.NumPad3:
