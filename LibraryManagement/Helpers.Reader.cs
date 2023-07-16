@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +46,35 @@ namespace Helpers
         {
             Regex emailPattern = new(@".+@.+[.]com");
             return emailPattern.IsMatch(input);
+        }
+        public static Patron GetPatronInfoFromUser()
+        {
+            Patron patron = new();
+            WriteLine();
+            WriteInfo("Enter the Patrons's details:");
+            Write("Name: ");
+            patron.Name = ReadNotEmptyString();
+            Write("Email: ");
+            patron.Email = ReadNotEmptyString();
+            Write("Phone: ");
+            patron.Phone = ReadNotEmptyString();
+            Write("Address: ");
+            patron.Address = ReadNotEmptyString();
+            return patron;
+        }
+        public static Book GetBookInfoFromUser()
+        {
+            Book book = new();
+            WriteLine();
+            WriteInfo("Enter the Book's details:");
+            Write("Title: ");
+            book.Title = ReadNotEmptyString();
+            Write("Author: ");
+            book.Author = ReadNotEmptyString();
+            Write("Genre: ");
+            book.Genre = ReadNotEmptyString();
+            book.Availability = true;
+            return book;
         }
 
     }

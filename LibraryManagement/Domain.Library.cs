@@ -16,45 +16,23 @@ public class Library
 
     public void AddBook()
     {
-        Book book = new();
-        WriteLine();
-        WriteInfo("Enter the Book's details:");
-        Write("Title: ");
-        book.Title = ReadNotEmptyString();
-        Write("Id: ");
-        book.BookId = ReadNotEmptyString();
-        Write("Author: ");
-        book.Author = ReadNotEmptyString();
-        Write("ISBN: ");
-        book.ISBN = ReadNotEmptyString();
-        Write("Genre: ");
-        book.Genre = ReadNotEmptyString();
-        book.Availability = true;
-        Books.Add(book);
+        
+        Books.Add(GetBookInfoFromUser());
         WriteSuccess("Book was Added Sucsessfully");
         DisplayBooks(Books);
         MainMenu();
     }
+    
     public void AddPatron()
     {
-        Patron patron = new();
-        WriteLine();
-        WriteInfo("Enter the Patrons's details:");
-        Write("Name: ");
-        patron.Name = ReadNotEmptyString();
-        Write("Id: ");
-        patron.PatronId = ReadNotEmptyString();
-        Write("Email: ");
-        patron.Email = ReadNotEmptyString();
-        Write("Phone: ");
-        patron.Phone = ReadNotEmptyString();
-        Write("Address: ");
-        patron.Address = ReadNotEmptyString();
-        Patrons.Add(patron);
+        Patrons.Add(GetPatronInfoFromUser());
         WriteSuccess("Patron was Added Sucsessfully");
         DisplayPatrons(Patrons);
         MainMenu();
     }
+
+    
+
     public bool TryFindBook(string key, out Book? foundBook)
     {
         foreach (Book b in Books)

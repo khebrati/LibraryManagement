@@ -7,19 +7,19 @@ using System.Text.RegularExpressions;
 namespace UI;
 public class Program
 {
-    public static Library library = new();
+    public static Library Library = new();
     public static void Main(string[] args)
     {
         WriteLine();
         ForegroundColor = ConsoleColor.Green;
         WriteLine("Welcome to our Library!");
+        WriteInfo("At any Time you can go to last menu by writing b and hitting Enter");
         MainMenu();
     }
 
 
     public static void MainMenu()
     {
-        WriteLine();
         WriteLine();
         ForegroundColor = ConsoleColor.White;
         WriteLine($"1)Manage The Library");
@@ -29,11 +29,14 @@ public class Program
         {
             case ConsoleKey.D1:
             case ConsoleKey.NumPad1:
-                LibraryMenu();
+                LibraryManagementMenu();
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
                 PatronManagementMenu();
+                break;
+            case ConsoleKey.D3:
+            case ConsoleKey.NumPad3:
                 break;
             default:
                 WriteError("you can only choose from the list above! Try again: ");
@@ -42,9 +45,8 @@ public class Program
         }
 
     }
-    public static void LibraryMenu()
+    public static void LibraryManagementMenu()
     {
-        WriteLine();
         WriteLine();
         WriteInfo("What do you want to do?");
         WriteLine($"1)Add a Book");
@@ -58,11 +60,11 @@ public class Program
         {
             case ConsoleKey.D1:
             case ConsoleKey.NumPad1:
-                library.AddBook();
+                Library.AddBook();
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
-                library.AddPatron();
+                Library.AddPatron();
                 break;
             case ConsoleKey.D3:
             case ConsoleKey.NumPad3:
@@ -86,30 +88,63 @@ public class Program
                 break;
             default:
                 WriteError("You can only choose from the above list!");
+                LibraryManagementMenu();
                 break;
         }
 
 
     }
     
-    public static Patron ChoosePatron()
+    public static Patron ChooseFromExistingPatronsMenu()
     {
         WriteLine();
         WriteLine("List of Available Patrons:");
-        DisplayPatrons(library.Patrons);
-        WriteInfo("enter the patron to manage(Id, Name or ...) : ");
+        DisplayPatrons(Library.Patrons);
+        WriteInfo("enter the patron to choose(Id, Name or ...) : ");
         Patron? toBeFound = new();
-        while(!library.TryFindPatron(ReadNotEmptyString(), out toBeFound))
+        while(!Library.TryFindPatron(ReadNotEmptyString(), out toBeFound))
         {
-            WriteError("No patron with such specifications exist. Try again: ");
+            WriteError("No patron with such specifications exists. Try again: ");
+        }
+        return toBeFound!;
+    }
+    public static Book ChooseFromExistingBooksMenu()
+    {
+        WriteLine();
+        WriteLine("List of Available Books:");
+        DisplayBooks(Library.Books);
+        WriteInfo("enter the book to choose(Id, Name or ...) : ");
+        Book? toBeFound = new();
+        while (!Library.TryFindBook(ReadNotEmptyString(), out toBeFound))
+        {
+            WriteError("No book with such specifications exists. Try again: ");
         }
         return toBeFound!;
     }
     public static void PatronManagementMenu()
     {
-        Patron patron = ChoosePatron();
+        Patron patron = ChooseFromExistingPatronsMenu();
         WriteLine();
         WriteInfo("Patrons Management Menu:");
+        WriteLine("1)Borrow A Book");
+        WriteLine("2)Return A Book");
+        WriteLine("3)Last Menu");
+        switch(ReadKey().Key)
+        {
+            case ConsoleKey.D1:
+            case ConsoleKey.NumPad1:
+                patron.Borrow(ChooseFromExistingBooksMenu());
+                break;
+            case ConsoleKey.D2:
+            case ConsoleKey.NumPad2:
+                //return a book
+                break;
+            case ConsoleKey.D3:
+            case ConsoleKey.NumPad3:
+                MainMenu();
+                break;
+        }
+
     }
     
     

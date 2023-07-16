@@ -59,7 +59,7 @@ namespace Helpers
             WriteLine(fullLine);
             foreach (Book b in books)
             {
-                WriteLine($"{b.BookId,-20}{b.Title,-20}{b.Author,-20}{b.ISBN,-20}{b.Genre,-20}{b.Availability,-20}{b.ReservedBy,-20}");
+                WriteLine($"{b.BookId,-20}{b.Title,-20}{b.Author,-20}{b.ISBN,-20}{b.Genre,-20}{b.Availability,-20}{b.BorrowedBy,-20}");
             }
             WriteLine(fullLine);
             WriteLine();
