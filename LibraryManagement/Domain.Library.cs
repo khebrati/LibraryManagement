@@ -18,8 +18,7 @@ public class Library
     {
         Patrons = new();
         Books = new();
-        Patrons.Add(GetSamplePatron());
-        Books.Add(GetSampleBook());
+        LoadInitialSamples();
     }
 
     public void AddBook()
@@ -89,6 +88,18 @@ public class Library
             Address = GetRandomizer(new FieldOptionsCity()).Generate() + ", " + GetRandomizer(new FieldOptionsCity()).Generate()!,
             Phone = GetRandomizer(optionsRegexPhone).Generate()!
         };
+    }
+    public void LoadInitialSamples()
+    {
+        Books.Add(GetSampleBook());
+        Books.Add(GetSampleBook());
+        Books.Add(GetSampleBook());
+        Books.Add(GetSampleBook());
+
+        Patrons.Add(GetSamplePatron());
+        Patrons.Add(GetSamplePatron());
+        Patrons.Add(GetSamplePatron());
+        Patrons.Add(GetSamplePatron());
     }
 
 }
