@@ -15,4 +15,8 @@ public class Book
         BookId = GenerateRandomId();
         ISBN = GenerateRandomISBN();
     }
+    public override string ToString()
+    {
+        return Title;
+    }
 }

@@ -19,7 +19,6 @@ public class Program
 
     public static void MainMenu()
     {
-        WriteLine();
         ForegroundColor = ConsoleColor.White;
         WriteLine($"1)Manage The Library");
         WriteLine($"2)Manage Patrons");
@@ -133,6 +132,7 @@ public class Program
             case ConsoleKey.D1:
             case ConsoleKey.NumPad1:
                 patron.Borrow(ChooseFromExistingBooksMenu());
+                MainMenu();
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:

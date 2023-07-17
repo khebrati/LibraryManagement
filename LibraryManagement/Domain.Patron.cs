@@ -23,6 +23,8 @@ public class Patron
         Loan loan = new(book, this);
         Loans.Add(loan);
         book.BorrowedBy = this;
+        WriteSuccess($"{this} has seccessfully borrowed {book}");
+        WriteError($"Book must be returned before one minute, or the {this} will be fined!");
     }
 }
 

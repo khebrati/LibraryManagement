@@ -9,12 +9,11 @@ public class Loan
     public DateTime ReturnDate { get; set; }
     public Loan(Book book,Patron patron)
     {
-        Random r = new();
-        LoanId = r.Next(1000).ToString();
+        LoanId = GenerateRandomId();
         Book = book;
         Patron = patron;
         LoanDate = DateTime.Now;
-        DueDate = DateTime.Now.AddDays(14);
+        DueDate = DateTime.Now.AddMinutes(1);
     }
 
 }
