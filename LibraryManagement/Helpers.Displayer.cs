@@ -37,12 +37,12 @@ namespace Helpers
             WriteLine(fullLine);
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Yellow;
-            WriteLine($"{"Id",-30}{"Name",-30}{"Address",-30}{"Email",-30}{"Phone",-30}");
+            WriteLine($"{"Id",-30}{"Name",-30}{"Address",-30}{"Email",-40}{"Phone",-30}");
             ForegroundColor = previous;
             WriteLine(fullLine);
             foreach (Patron p in patrons)
             {
-                WriteLine($"{p.PatronId,-30}{p.Name,-30}{p.Address,-30}{p.Email,-30}{p.Phone,-30}");
+                WriteLine($"{p.PatronId,-30}{p.Name,-30}{p.Address,-30}{p.Email,-40}{p.Phone,-30}");
             }
             WriteLine(fullLine);
             WriteLine();
@@ -54,12 +54,12 @@ namespace Helpers
             WriteLine(fullLine);
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Yellow;
-            WriteLine($"{"Id",-30}{"Title",-30}{"Author",-30}{"ISBN",-30}{"Genre",-30}{"Is Available",-30}{"Reserved By",-30}");
+            WriteLine($"{"Id",-20}{"Title",-20}{"Author",-20}{"ISBN",-20}{"Genre",-20}{"Is Available",-20}{"Reserved By",-20}");
             ForegroundColor = previous;
             WriteLine(fullLine);
             foreach (Book b in books)
             {
-                WriteLine($"{b.BookId,-30}{b.Title,-30}{b.Author,-30}{b.ISBN,-30}{b.Genre,-30}{b.Availability,-30}{b.BorrowedBy,-30}");
+                WriteLine($"{b.BookId,-20}{b.Title,-20}{b.Author,-20}{b.ISBN,-20}{b.Genre,-20}{b.Availability,-20}{b.BorrowedBy,-20}");
             }
             WriteLine(fullLine);
             WriteLine();

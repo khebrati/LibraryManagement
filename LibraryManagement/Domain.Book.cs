@@ -11,6 +11,7 @@ public class Book
     public Patron? BorrowedBy { get; set; }
     public Book()
     {
+        Availability = true;
         BookId = GenerateRandomId();
         ISBN = GenerateRandomISBN();
     }

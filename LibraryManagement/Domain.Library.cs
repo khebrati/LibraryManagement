@@ -4,7 +4,10 @@ global using static Helpers.Displayer;
 global using static Helpers.Reader;
 global using static UI.Program;
 global using static RandomDataGenerator.Randomizers.RandomizerFactory;
+global using System.Text.RegularExpressions;
 using RandomDataGenerator.FieldOptions;
+using System.Text.RegularExpressions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Domain;
 public class Library
@@ -77,12 +80,14 @@ public class Library
     }
     public Patron GetSamplePatron()
     {
+        FieldOptionsTextRegex optionsRegexPhone = new();
+        optionsRegexPhone.Pattern = @"09\d{9}";
         return new Patron
         {
             Email = GetRandomizer(new FieldOptionsEmailAddress()).Generate()!,
             Name = GetRandomizer(new FieldOptionsFullName()).Generate()!,
             Address = GetRandomizer(new FieldOptionsCity()).Generate() + ", " + GetRandomizer(new FieldOptionsCity()).Generate()!,
-            Phone = GenerateRandomId()
+            Phone = GetRandomizer(optionsRegexPhone).Generate()!
         };
     }
 
