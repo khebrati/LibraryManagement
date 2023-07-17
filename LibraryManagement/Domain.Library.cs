@@ -3,6 +3,9 @@ global using static System.Convert;
 global using static Helpers.Displayer;
 global using static Helpers.Reader;
 global using static UI.Program;
+global using static RandomDataGenerator.Randomizers.RandomizerFactory;
+using RandomDataGenerator.FieldOptions;
+
 namespace Domain;
 public class Library
 {
@@ -12,6 +15,8 @@ public class Library
     {
         Patrons = new();
         Books = new();
+        Patrons.Add(GetSamplePatron());
+        Books.Add(GetSampleBook());
     }
 
     public void AddBook()
@@ -59,13 +64,26 @@ public class Library
         foundPatron = null;
         return false;
     }
-    public Book MakeSampleBook()
+    public Book GetSampleBook()
     {
+        FieldOptionsTextWords title = new();
+        title.Max = 3;
         return new Book
         {
-            Title = "LOTR",
-            
-        }
+            Title = GetRandomizer(title).Generate()!,
+            Author = GetRandomizer(new FieldOptionsFullName()).Generate()!,
+            Genre = GetRandomizer(new FieldOptionsFullName()).Generate()!
+        };
+    }
+    public Patron GetSamplePatron()
+    {
+        return new Patron
+        {
+            Email = GetRandomizer(new FieldOptionsEmailAddress()).Generate()!,
+            Name = GetRandomizer(new FieldOptionsFullName()).Generate()!,
+            Address = GetRandomizer(new FieldOptionsCity()).Generate() + ", " + GetRandomizer(new FieldOptionsCity()).Generate()!,
+            Phone = GenerateRandomId()
+        };
     }
 
 }

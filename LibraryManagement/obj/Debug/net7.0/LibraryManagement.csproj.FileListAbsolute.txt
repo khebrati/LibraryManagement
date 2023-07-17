@@ -13,3 +13,7 @@ C:\Users\erfan\Drive\Source\LibraryManagement\LibraryManagement\obj\Debug\net7.0
 C:\Users\erfan\Drive\Source\LibraryManagement\LibraryManagement\obj\Debug\net7.0\LibraryManagement.pdb
 C:\Users\erfan\Drive\Source\LibraryManagement\LibraryManagement\obj\Debug\net7.0\LibraryManagement.genruntimeconfig.cache
 C:\Users\erfan\Drive\Source\LibraryManagement\LibraryManagement\obj\Debug\net7.0\ref\LibraryManagement.dll
+C:\Users\erfan\Drive\Source\LibraryManagement\LibraryManagement\bin\Debug\net7.0\Fare.dll
+C:\Users\erfan\Drive\Source\LibraryManagement\LibraryManagement\bin\Debug\net7.0\RandomDataGenerator.dll
+C:\Users\erfan\Drive\Source\LibraryManagement\LibraryManagement\bin\Debug\net7.0\Stef.Validation.dll
+C:\Users\erfan\Drive\Source\LibraryManagement\LibraryManagement\obj\Debug\net7.0\LibraryManagement.csproj.CopyComplete
