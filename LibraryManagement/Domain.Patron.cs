@@ -10,8 +10,7 @@ public class Patron
     public List<Loan> Loans { get; set; }
     public Patron()
     {
-        Random r = new();
-        PatronId = r.Next().ToString();
+        PatronId = GenerateRandomId();
         Loans = new();
     }
     public override string ToString()

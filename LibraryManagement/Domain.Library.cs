@@ -59,5 +59,13 @@ public class Library
         foundPatron = null;
         return false;
     }
+    public Book MakeSampleBook()
+    {
+        return new Book
+        {
+            Title = "LOTR",
+            
+        }
+    }
 
 }

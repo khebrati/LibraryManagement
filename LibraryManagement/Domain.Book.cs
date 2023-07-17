@@ -1,5 +1,5 @@
-﻿namespace Domain;
-
+﻿global using static Helpers.RandomGenerator;
+namespace Domain;
 public class Book
 {
     public string BookId { get; set; }
@@ -11,8 +11,7 @@ public class Book
     public Patron? BorrowedBy { get; set; }
     public Book()
     {
-        Random r = new();
-        BookId = r.Next(1000).ToString();
-        ISBN = r.Next(10001,1000000).ToString();
+        BookId = GenerateRandomId();
+        ISBN = GenerateRandomISBN();
     }
 }
