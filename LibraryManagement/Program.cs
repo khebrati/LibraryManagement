@@ -149,7 +149,7 @@ public class Program
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
-                ChooseFromPatronLoansMenu(patron);
+                ChooseFromPatronLoansMenu(patron).Return();
                 break;
             case ConsoleKey.D3:
             case ConsoleKey.NumPad3:
