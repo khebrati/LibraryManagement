@@ -45,7 +45,6 @@ namespace Helpers
                 WriteLine($"{p.PatronId,-30}{p.Name,-30}{p.Address,-30}{p.Email,-40}{p.Phone,-30}");
             }
             WriteLine(fullLine);
-            WriteLine();
         }
         public static void DisplayBooks(List<Book> books)
         {
@@ -62,7 +61,6 @@ namespace Helpers
                 WriteLine($"{b.BookId,-20}{b.Title,-20}{b.Author,-20}{b.ISBN,-20}{b.Genre,-20}{b.Availability,-20}{b.BorrowedBy,-20}");
             }
             WriteLine(fullLine);
-            WriteLine();
         }
         public static void DisplayLoans(List<Loan> loans)
         {
@@ -71,15 +69,14 @@ namespace Helpers
             WriteLine(fullLine);
             ConsoleColor previous = ForegroundColor;
             ForegroundColor = ConsoleColor.Yellow;
-            WriteLine($"{"LoanId",-20}{"Book",-20}{"Patron",-20}{"LoanDate",-20}{"DueDate",-20}{"ReturnDate",-20}{"Is Fined",-20}{"Find amount",-20}{"Payed"}");
+            WriteLine($"{"LoanId",-20}{"Book",-20}{"Patron",-20}{"LoanDate",-20}{"DueDate",-20}{"ReturnDate",-20}{"Is Fined",-20}{"Find amount",-20}{"Paid",-20}");
             ForegroundColor = previous;
             WriteLine(fullLine);
             foreach (Loan l in loans)
             {
-                WriteLine($"{l.LoanId,-20}{l.Book,-20}{l.Patron,-20}{l.LoanDate,-20}{l.DueDate,-20}{l.ReturnDate,-20}{l.IsFined,-20}{l.Fine.Amount,-20}{l.Fine.PaymentStatus,-20}");
+                WriteLine($"{l.LoanId,-20}{l.Book,-20}{l.Patron,-20}{l.LoanDate.ToString("MM-dd HH-mm-ss"),-20}{l.DueDate.ToString("MM-dd HH-mm-ss"),-20}{l.ReturnDate.ToString("MM-dd HH-mm-ss"),-20}{l.IsFined(),-20}{l.Fine.Amount,-20}{l.Fine.PaymentStatus,-20}");
             }
             WriteLine(fullLine);
-            WriteLine();
         }
 
     }

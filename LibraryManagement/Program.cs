@@ -19,6 +19,7 @@ public class Program
 
     public static void MainMenu()
     {
+        WriteInfo("Main Menu");
         ForegroundColor = ConsoleColor.White;
         WriteLine($"1)Manage The Library");
         WriteLine($"2)Manage Patrons");
@@ -27,10 +28,12 @@ public class Program
         {
             case ConsoleKey.D1:
             case ConsoleKey.NumPad1:
+                WriteLine();
                 LibraryManagementMenu();
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
+                WriteLine();
                 PatronManagementMenu();
                 break;
             case ConsoleKey.D3:
@@ -45,8 +48,7 @@ public class Program
     }
     public static void LibraryManagementMenu()
     {
-        WriteLine();
-        WriteInfo("What do you want to do?");
+        WriteInfo("Library Management Menu");
         WriteLine($"1)Add a Book");
         WriteLine($"2)Add a Patron");
         WriteLine($"3)Search for a book by title");
@@ -58,10 +60,12 @@ public class Program
         {
             case ConsoleKey.D1:
             case ConsoleKey.NumPad1:
+                WriteLine();
                 Library.AddBook();
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
+                WriteLine();
                 Library.AddPatron();
                 break;
             case ConsoleKey.D3:
@@ -82,6 +86,7 @@ public class Program
                 break;
             case ConsoleKey.D7:
             case ConsoleKey.NumPad7:
+                WriteLine();
                 MainMenu();
                 break;
             default:
@@ -95,10 +100,8 @@ public class Program
     
     public static Patron ChooseFromExistingPatronsMenu()
     {
-        WriteLine();
-        WriteLine("List of Available Patrons:");
         DisplayPatrons(Library.Patrons);
-        WriteInfo("enter the patron to choose(Id, Name or ...) : ");
+        WriteInfo("Enter the patron to choose(Id, Name or ...) : ");
         Patron? toBeFound = new();
         while(!Library.TryFindPatron(ReadNotEmptyString(), out toBeFound))
         {
@@ -108,8 +111,6 @@ public class Program
     }
     public static Book ChooseFromExistingBooksMenu()
     {
-        WriteLine();
-        WriteLine("List of Available Books:");
         DisplayBooks(Library.Books);
         WriteInfo("enter the book to choose(Id, Name or ...) : ");
         Book? toBeFound = new();
@@ -121,8 +122,6 @@ public class Program
     }
     public static Loan ChooseFromPatronLoansMenu(Patron patron)
     {
-        WriteLine();
-        WriteLine("List of Loans:");
         DisplayLoans(patron.Loans);
         WriteInfo("enter the Loan to choose(loan Id or book title) : ");
         Loan? toBeFound = new();
@@ -135,7 +134,6 @@ public class Program
     public static void PatronManagementMenu()
     {
         Patron patron = ChooseFromExistingPatronsMenu();
-        WriteLine();
         WriteInfo("Patrons Management Menu:");
         WriteLine("1)Borrow A Book");
         WriteLine("2)Return A Book");
@@ -144,15 +142,18 @@ public class Program
         {
             case ConsoleKey.D1:
             case ConsoleKey.NumPad1:
+                WriteLine();
                 patron.Borrow(ChooseFromExistingBooksMenu());
                 MainMenu();
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
+                WriteLine();
                 ChooseFromPatronLoansMenu(patron).Return();
                 break;
             case ConsoleKey.D3:
             case ConsoleKey.NumPad3:
+                WriteLine();
                 MainMenu();
                 break;
         }
