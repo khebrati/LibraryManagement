@@ -7,11 +7,11 @@ public class Loan
     public DateTime LoanDate {get; set; }
     public DateTime DueDate { get; set; }
     public DateTime ReturnDate { get; set; }
-    public Loan(Book book,Patron patron)
+    public bool IsFined { get; set; }
+    public Fine Fine { get; set; }
+    public Loan()
     {
         LoanId = GenerateRandomId();
-        Book = book;
-        Patron = patron;
         LoanDate = DateTime.Now;
         DueDate = DateTime.Now.AddMinutes(1);
     }

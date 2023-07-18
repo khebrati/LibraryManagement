@@ -119,6 +119,19 @@ public class Program
         }
         return toBeFound!;
     }
+    public static Loan ChooseFromPatronLoansMenu(Patron patron)
+    {
+        WriteLine();
+        WriteLine("List of Loans:");
+        DisplayLoans(patron.Loans);
+        WriteInfo("enter the Loan to choose(loan Id or book title) : ");
+        Loan? toBeFound = new();
+        while (!patron.TryFindLoan(ReadNotEmptyString(), out toBeFound))
+        {
+            WriteError("No Loan with such specifications exists. Try again: ");
+        }
+        return toBeFound!;
+    }
     public static void PatronManagementMenu()
     {
         Patron patron = ChooseFromExistingPatronsMenu();
@@ -136,7 +149,7 @@ public class Program
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
-                //return a book
+                ChooseFromPatronLoansMenu(patron);
                 break;
             case ConsoleKey.D3:
             case ConsoleKey.NumPad3:

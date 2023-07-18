@@ -64,6 +64,23 @@ namespace Helpers
             WriteLine(fullLine);
             WriteLine();
         }
+        public static void DisplayLoans(List<Loan> loans)
+        {
+            WriteInfo("Loans");
+            string fullLine = new string('-', WindowWidth);
+            WriteLine(fullLine);
+            ConsoleColor previous = ForegroundColor;
+            ForegroundColor = ConsoleColor.Yellow;
+            WriteLine($"{"LoanId",-20}{"Book",-20}{"Patron",-20}{"LoanDate",-20}{"DueDate",-20}{"ReturnDate",-20}{"Is Fined",-20}{"Find amount",-20}{"Payed"}");
+            ForegroundColor = previous;
+            WriteLine(fullLine);
+            foreach (Loan l in loans)
+            {
+                WriteLine($"{l.LoanId,-20}{l.Book,-20}{l.Patron,-20}{l.LoanDate,-20}{l.DueDate,-20}{l.ReturnDate,-20}{l.IsFined,-20}{l.Fine.FineAmount,-20}{l.Fine.PaymentStatus,-20}");
+            }
+            WriteLine(fullLine);
+            WriteLine();
+        }
 
     }
 }
