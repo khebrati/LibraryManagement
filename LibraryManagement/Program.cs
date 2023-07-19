@@ -60,7 +60,9 @@ public class Program
         WriteLine($"4)Search for a book by author");
         WriteLine($"5)Search for a patron by name");
         WriteLine($"6)Generate overdue book report");
-        WriteLine($"7)Last Menu");
+        WriteLine($"7)Show all books in the library");
+        WriteLine($"8)Shwo all patrons in the library");
+        WriteLine($"9)Last Menu");
         GetMainMenuKey();
 
     }
@@ -127,6 +129,16 @@ public class Program
                 break;
             case ConsoleKey.D7:
             case ConsoleKey.NumPad7:
+                WriteLine();
+                DisplayBooksInfo(Library.Books);
+                break;
+            case ConsoleKey.D8:
+            case ConsoleKey.NumPad8:
+                WriteLine();
+                DisplayPatronsInfo(Library.Patrons);
+                break;
+            case ConsoleKey.D9:
+            case ConsoleKey.NumPad9:
                 WriteLine();
                 break;
             default:
