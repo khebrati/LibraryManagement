@@ -36,8 +36,6 @@ public class Library
         DisplayPatronsInfo(Patrons);
     }
 
-    
-
     public bool TryFindBookByKey(string key, out Book? foundBook)
     {
         foreach (Book b in Books)
@@ -48,6 +46,7 @@ public class Library
                 return true;
             }
         }
+        WriteError("Book not found");
         foundBook = null;
         return false;
     }
@@ -55,12 +54,13 @@ public class Library
     {
         foreach (Book b in Books)
         {
-            if (b.Author == title)
+            if (b.Title == title)
             {
                 foundBook = b;
                 return true;
             }
         }
+        WriteError("Book not found");
         foundBook = null;
         return false;
     }
@@ -74,6 +74,7 @@ public class Library
                 return true;
             }
         }
+        WriteError("Book not found");
         foundBook = null;
         return false;
     }
@@ -87,6 +88,7 @@ public class Library
                 return true;
             }
         }
+        WriteError("Patron not found");
         foundPatron = null;
         return false;
     }
@@ -100,6 +102,7 @@ public class Library
                 return true;
             }
         }
+        WriteError("Patron not found");
         foundPatron = null;
         return false;
     }
