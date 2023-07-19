@@ -100,37 +100,33 @@ public class Program
     
     public static Patron ChooseFromExistingPatronsMenu()
     {
-        DisplayPatrons(Library.Patrons);
+        DisplayPatronsInfo(Library.Patrons);
         WriteInfo("Enter the patron to choose(Id, Name or ...) : ");
-        Patron? toBeFound = new();
-        while(!Library.TryFindPatron(ReadNotEmptyString(), out toBeFound))
-        {
-            WriteError("No patron with such specifications exists. Try again: ");
-        }
-        return toBeFound!;
+        return FindPatronBasedOnUserInfo();
     }
+
+    
+
+
     public static Book ChooseFromExistingBooksMenu()
     {
-        DisplayBooks(Library.Books);
+        DisplayBooksInfo(Library.Books);
         WriteInfo("enter the book to choose(Id, Name or ...) : ");
-        Book? toBeFound = new();
-        while (!Library.TryFindBook(ReadNotEmptyString(), out toBeFound))
-        {
-            WriteError("No book with such specifications exists. Try again: ");
-        }
-        return toBeFound!;
+        return FindBookBasedOnUserInfo();
+
     }
+    
+
     public static Loan ChooseFromPatronLoansMenu(Patron patron)
     {
-        DisplayLoans(patron.Loans);
+        DisplayLoansInfo(patron.Loans);
         WriteInfo("enter the Loan to choose(loan Id or book title) : ");
-        Loan? toBeFound = new();
-        while (!patron.TryFindLoan(ReadNotEmptyString(), out toBeFound))
-        {
-            WriteError("No Loan with such specifications exists. Try again: ");
-        }
-        return toBeFound!;
+        return FindLoanBasedOnUserInfo(patron);
     }
+
+    
+
+
     public static void PatronManagementMenu()
     {
         Patron patron = ChooseFromExistingPatronsMenu();

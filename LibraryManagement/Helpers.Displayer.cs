@@ -30,7 +30,7 @@ namespace Helpers
             WriteLine(message);
             ForegroundColor = previous;
         }
-        public static void DisplayPatrons(List<Patron> patrons)
+        public static void DisplayPatronsInfo(List<Patron> patrons)
         {
             WriteInfo("Available Patrons");
             string fullLine = new string('-', WindowWidth);
@@ -42,11 +42,15 @@ namespace Helpers
             WriteLine(fullLine);
             foreach (Patron p in patrons)
             {
-                WriteLine($"{p.PatronId,-30}{p.Name,-30}{p.Address,-30}{p.Email,-40}{p.Phone,-30}");
+                DisplayPatronInfo(p);
             }
             WriteLine(fullLine);
         }
-        public static void DisplayBooks(List<Book> books)
+        public static void DisplayPatronInfo(Patron patron)
+        {
+            WriteLine($"{patron.PatronId,-30}{patron.Name,-30}{patron.Address,-30}{patron.Email,-40}{patron.Phone,-30}");
+        }
+        public static void DisplayBooksInfo(List<Book> books)
         {
             WriteInfo("Available Books");
             string fullLine = new string('-', WindowWidth);
@@ -58,11 +62,15 @@ namespace Helpers
             WriteLine(fullLine);
             foreach (Book b in books)
             {
-                WriteLine($"{b.BookId,-20}{b.Title,-20}{b.Author,-20}{b.ISBN,-20}{b.Genre,-20}{b.Availability,-20}{b.BorrowedBy,-20}");
+                DisplayBookInfo(b);
             }
             WriteLine(fullLine);
         }
-        public static void DisplayLoans(List<Loan> loans)
+        public static void DisplayBookInfo(Book book)
+        {
+            WriteLine($"{book.BookId,-20}{book.Title,-20}{book.Author,-20}{book.ISBN,-20}{book.Genre,-20}{book.Availability,-20}{book.BorrowedBy,-20}");
+        }
+        public static void DisplayLoansInfo(List<Loan> loans)
         {
             WriteInfo("Loans");
             string fullLine = new string('-', WindowWidth);

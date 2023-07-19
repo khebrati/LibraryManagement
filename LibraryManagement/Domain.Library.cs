@@ -26,7 +26,7 @@ public class Library
         
         Books.Add(GetBookInfoFromUser());
         WriteSuccess("Book was Added Sucsessfully");
-        DisplayBooks(Books);
+        DisplayBooksInfo(Books);
         MainMenu();
     }
     
@@ -34,13 +34,13 @@ public class Library
     {
         Patrons.Add(GetPatronInfoFromUser());
         WriteSuccess("Patron was Added Sucsessfully");
-        DisplayPatrons(Patrons);
+        DisplayPatronsInfo(Patrons);
         MainMenu();
     }
 
     
 
-    public bool TryFindBook(string key, out Book? foundBook)
+    public bool TryFindBookByKey(string key, out Book? foundBook)
     {
         foreach (Book b in Books)
         {
@@ -53,11 +53,50 @@ public class Library
         foundBook = null;
         return false;
     }
-    public bool TryFindPatron(string key, out Patron? foundPatron)
+    public bool TryFindBookByTitle(string title, out Book? foundBook)
+    {
+        foreach (Book b in Books)
+        {
+            if (b.Author == title)
+            {
+                foundBook = b;
+                return true;
+            }
+        }
+        foundBook = null;
+        return false;
+    }
+    public bool TryFindBookByAuthor(string author, out Book? foundBook)
+    {
+        foreach (Book b in Books)
+        {
+            if (b.Author == author)
+            {
+                foundBook = b;
+                return true;
+            }
+        }
+        foundBook = null;
+        return false;
+    }
+    public bool TryFindPatronByKey(string key, out Patron? foundPatron)
     {
         foreach (Patron p in Patrons)
         {
             if (p.Name == key || p.PatronId == key || p.Phone == key || p.Address == key || p.Email == key)
+            {
+                foundPatron = p;
+                return true;
+            }
+        }
+        foundPatron = null;
+        return false;
+    }
+    public bool TryFindPatronByName(string name, out Patron? foundPatron)
+    {
+        foreach (Patron p in Patrons)
+        {
+            if (p.Name == name)
             {
                 foundPatron = p;
                 return true;
