@@ -69,7 +69,7 @@ public class Library
     public Book GetSampleBook()
     {
         FieldOptionsTextWords title = new();
-        title.Max = 3;
+        title.Max = 2;
         return new Book
         {
             Title = GetRandomizer(title).Generate()!,

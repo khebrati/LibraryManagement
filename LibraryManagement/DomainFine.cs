@@ -6,7 +6,7 @@ public class Fine
 {
     public Loan Loan { get; set; }
     public string FineId { get; init; }
-    public double Amount
+    public int Amount
     {
         get
         {
@@ -14,7 +14,7 @@ public class Fine
             {
                 if(Loan.IsFined)
                 {
-                    return (Loan.ReturnDate - Loan.DueDate).TotalSeconds / 10;
+                    return (int)(Loan.ReturnDate - Loan.DueDate).TotalSeconds / 10;
                 }
                 return 0;
             }
@@ -24,7 +24,7 @@ public class Fine
                 {
                     return 0;
                 }
-                return (Loan.DueDate - DateTime.Now).TotalSeconds / 10;
+                return (int)(DateTime.Now - Loan.DueDate ).TotalSeconds / 10;
             }
 
         }

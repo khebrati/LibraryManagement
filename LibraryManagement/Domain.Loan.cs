@@ -36,9 +36,12 @@ public class Loan
         {
             WriteError($"The loan with Id: {Id} has already been returned");
         }
-        IsReturned = true;
-        Book.Availability = true;
-        Book.BorrowedBy = null;
-        ReturnDate = DateTime.Now;
+        else
+        {
+            IsReturned = true;
+            Book.Availability = true;
+            Book.BorrowedBy = null;
+            ReturnDate = DateTime.Now;
+        }
     }
 }
