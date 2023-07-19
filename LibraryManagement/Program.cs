@@ -84,34 +84,41 @@ public class Program
                 WriteLine();
                 WriteInfo("Write The Book's title");
                 Write("Title: ");
-                if (Library.TryFindBookByTitle(ReadNotEmptyString(), out Book? foundByTitle))
+                string title = ReadNotEmptyString();
+                List<Book> foundBooksByTitle = Library.Books.FindAll(new(book => book.Title == title));
+                if(foundBooksByTitle.Count == 0)
                 {
-                    WriteInfo("Found it! Here's it's details: ");
-                    DisplayBookInfo(foundByTitle!);
+                    WriteError("No books were found");
+                    break;
                 }
+                DisplayBooksInfo(foundBooksByTitle);
                 break;
             case ConsoleKey.D4:
             case ConsoleKey.NumPad4:
                 WriteLine();
                 WriteInfo("Write The Book's Author");
-                Write("Author: ");
-                if (Library.TryFindBookByAuthor(ReadNotEmptyString(), out Book? foundByAuthor))
+                string author = ReadNotEmptyString();
+                List<Book> foundBooksByAuthor = Library.Books.FindAll(new(book => book.Author == author));
+                if (foundBooksByAuthor.Count == 0)
                 {
-                    WriteInfo("Found it! Here's it's details: ");
-                    DisplayBookInfo(foundByAuthor!);
+                    WriteError("No books were found");
+                    break;
                 }
+                DisplayBooksInfo(foundBooksByAuthor);
                 break;
             case ConsoleKey.D5:
             case ConsoleKey.NumPad5:
                 WriteLine();
-                WriteLine();
                 WriteInfo("Write The Patron's Name");
                 Write("Name: ");
-                if (Library.TryFindPatronByName(ReadNotEmptyString(), out Patron? foundByName))
+                string name = ReadNotEmptyString();
+                List<Patron> foundPatrons = Library.Patrons.FindAll(new(patron => patron.Name == name));
+                if (foundPatrons.Count == 0)
                 {
-                    WriteInfo("Found it! Here's it's details: ");
-                    DisplayPatronInfo(foundByName!);
+                    WriteError("No patrons were found");
+                    break;
                 }
+                DisplayPatronsInfo(foundPatrons);
                 break;
             case ConsoleKey.D6:
             case ConsoleKey.NumPad6:
