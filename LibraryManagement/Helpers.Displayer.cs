@@ -74,7 +74,7 @@ namespace Helpers
             WriteLine(fullLine);
             foreach (Loan l in loans)
             {
-                WriteLine($"{l.LoanId,-20}{l.Book,-20}{l.Patron,-20}{l.LoanDate.ToString("MM-dd HH-mm-ss"),-20}{l.DueDate.ToString("MM-dd HH-mm-ss"),-20}{l.ReturnDate.ToString("MM-dd HH-mm-ss"),-20}{l.IsFined(),-20}{l.Fine.Amount,-20}{l.Fine.PaymentStatus,-20}");
+                WriteLine($"{l.LoanId,-20}{l.Book,-20}{l.Patron,-20}{l.LoanDate.ToString("MM-dd HH-mm-ss"),-20}{l.DueDate.ToString("MM-dd HH-mm-ss"),-20}{l.ReturnDate.ToString("MM-dd HH-mm-ss"),-20}{l.IsFined,-20}{l.Fine.Amount,-20}{l.Fine.PaymentStatus,-20}");
             }
             WriteLine(fullLine);
         }

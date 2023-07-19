@@ -8,8 +8,20 @@ public class Loan
     public DateTime DueDate { get; set; }
     public DateTime ReturnDate { get; set; }
     public Fine Fine { get; set; }
+    public bool IsFined
+    {
+        get
+        {
+            if(ReturnDate == DateTime.MinValue) //loan not yet been returned, S
+            {
+                return false;
+            }
+            return (ReturnDate - DueDate).Ticks < 0;
+        }
+    }
     public Loan()
     {
+
         LoanId = GenerateRandomId();
         LoanDate = DateTime.Now;
         DueDate = DateTime.Now.AddMinutes(1);
@@ -20,22 +32,14 @@ public class Loan
         Book.Availability = true;
         Book.BorrowedBy = null;
         ReturnDate = DateTime.Now;
-        if(IsFined())
+        if (IsFined)
         {
             CalculateFine();
         }
     }
-    public bool IsFined()
-    {
-        if((ReturnDate - DueDate).Ticks < 0)
-        {
-            return true;
-        }
-        return false;
-    }
     public void CalculateFine()
     {
-        if(!IsFined())
+        if (!IsFined)
         {
             WriteError($"The loan transaction with ID {LoanId} was returned on time and can not be fined!");
         }
