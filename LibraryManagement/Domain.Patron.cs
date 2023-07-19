@@ -32,7 +32,7 @@ public class Patron
         WriteSuccess($"{this} has seccessfully borrowed {book}");
         WriteError($"Book must be returned before one minute, or the {this} will be fined!");
     }
-    public bool TryFindLoan(string key, out Loan? foundLoan)
+    public bool TryFindLoanByKey(string key, out Loan? foundLoan)
     {
         foreach (Loan l in Loans)
         {
