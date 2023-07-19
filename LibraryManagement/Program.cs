@@ -149,50 +149,34 @@ public class Program
         }
     }
 
-    public static bool TryChooseFromExistingPatronsMenu(out Patron? chosen)
-    {
-        DisplayPatronsInfo(Library.Patrons);
-        WriteInfo("Enter the patron to choose(Id, Name or ...) : ");
-        if(Library.TryFindPatronByKey(ReadNotEmptyString(), out Patron? found))
-        {
-            chosen = found;
-            return true;
-        }
-        chosen = null;
-        return  false ;
-    }
 
-    
-
-
-    public static bool TryChooseFromExistingBooksMenu(out Book? chosen)
+    public static bool TryChooseFromExistingBooksMenu(out Book? chosenBook)
     {
         DisplayBooksInfo(Library.Books);
         WriteInfo("enter the book to choose(Id, Name or ...) : ");
-        if (Library.TryFindBookByKey(ReadNotEmptyString(), out Book? found))
-        {
-            chosen = found;
-            return true;
-        }
-        chosen = null;
-        return false ;
+        string input = ReadNotEmptyString();
+        chosenBook = Library.Books.Find(new(book => book.Author == input || book.BookId == input || book.Title == input || book.ISBN == input || book.Genre == input || book.ISBN == input));
+        return !(chosenBook is null);
     }
-    
 
-    public static bool TryChooseFromPatronLoansMenu(Patron patron,out Loan? chosen)
+
+    public static bool TryChooseFromExistingPatronsMenu(out Patron? chosenPatron)
+    {
+        DisplayPatronsInfo(Library.Patrons);
+        WriteInfo("enter the patron to choose(Id, Name or ...) : ");
+        string input = ReadNotEmptyString();
+        chosenPatron = Library.Patrons.Find(new(patron => patron.Name == input || patron.PatronId == input || patron.Phone == input || patron.Email == input));
+        return !(chosenPatron is null);
+    }
+
+    public static bool TryChooseFromPatronLoansMenu(Patron patron,out Loan? chosenLoan)
     {
         DisplayLoansInfo(patron.Loans);
-        WriteInfo("enter the Loan to choose(loan Id or book title) : ");
-        if (patron.TryFindLoanByKey(ReadNotEmptyString(), out Loan? found))
-        {
-            chosen = found;
-            return true;
-        }
-        chosen = null;
-        return false;
+        WriteInfo("enter the loan to choose(Id, Name or ...) : ");
+        string input = ReadNotEmptyString();
+        chosenLoan = patron.Loans.Find(new(patron => patron.Id == input || patron.Book.ToString() == input ));
+        return !(chosenLoan is null);
     }
-
-    
 
 
     public static void ShowPatronManagementMenu()
