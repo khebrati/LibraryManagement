@@ -150,6 +150,7 @@ public class Program
             case ConsoleKey.NumPad2:
                 WriteLine();
                 ChooseFromPatronLoansMenu(patron).Return();
+                MainMenu();
                 break;
             case ConsoleKey.D3:
             case ConsoleKey.NumPad3:

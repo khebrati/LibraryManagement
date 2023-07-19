@@ -36,7 +36,7 @@ public class Patron
     {
         foreach (Loan l in Loans)
         {
-            if (l.Book.Title == key || l.LoanId == key )
+            if (l.Book.Title == key || l.Id == key )
             {
                 foundLoan = l;
                 return true;
