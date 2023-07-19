@@ -27,7 +27,6 @@ public class Library
         Books.Add(GetBookInfoFromUser());
         WriteSuccess("Book was Added Sucsessfully");
         DisplayBooksInfo(Books);
-        MainMenu();
     }
     
     public void AddPatron()
@@ -35,7 +34,6 @@ public class Library
         Patrons.Add(GetPatronInfoFromUser());
         WriteSuccess("Patron was Added Sucsessfully");
         DisplayPatronsInfo(Patrons);
-        MainMenu();
     }
 
     

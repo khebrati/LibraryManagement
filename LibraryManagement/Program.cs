@@ -13,6 +13,7 @@ public class Program
         WriteLine();
         ForegroundColor = ConsoleColor.Green;
         WriteLine("Welcome to our Library!");
+        WriteLine();
         MainMenu();
     }
 
@@ -30,16 +31,20 @@ public class Program
             case ConsoleKey.NumPad1:
                 WriteLine();
                 LibraryManagementMenu();
+                MainMenu();
                 break;
             case ConsoleKey.D2:
             case ConsoleKey.NumPad2:
                 WriteLine();
                 PatronManagementMenu();
+                MainMenu();
                 break;
             case ConsoleKey.D3:
             case ConsoleKey.NumPad3:
+                WriteLine();
                 break;
             default:
+                WriteLine();
                 WriteError("you can only choose from the list above! Try again: ");
                 MainMenu();
                 break;
@@ -70,26 +75,30 @@ public class Program
                 break;
             case ConsoleKey.D3:
             case ConsoleKey.NumPad3:
-                //SearchBookByTitle()
+                WriteLine();
+                if (Library.TryFindBookByTitle(ReadNotEmptyString(), out Book? toBeFound)) ;
                 break;
             case ConsoleKey.D4:
             case ConsoleKey.NumPad4:
+                WriteLine();
                 //SearchBookByAuthor();
                 break;
             case ConsoleKey.D5:
             case ConsoleKey.NumPad5:
+                WriteLine();
                 //SearchPatronByName();
                 break;
             case ConsoleKey.D6:
             case ConsoleKey.NumPad6:
+                WriteLine();
                 //GenerateBookReport();
                 break;
             case ConsoleKey.D7:
             case ConsoleKey.NumPad7:
                 WriteLine();
-                MainMenu();
                 break;
             default:
+                WriteLine();
                 WriteError("You can only choose from the above list!");
                 LibraryManagementMenu();
                 break;
@@ -98,44 +107,52 @@ public class Program
 
     }
     
-    public static Patron? ChooseFromExistingPatronsMenu()
+    public static bool TryChooseFromExistingPatronsMenu(out Patron? chosen)
     {
         DisplayPatronsInfo(Library.Patrons);
         WriteInfo("Enter the patron to choose(Id, Name or ...) : ");
-        Patron patron = new();
-        if(Library.TryFindPatronByKey(ReadNotEmptyString(), out patron))
+        if(Library.TryFindPatronByKey(ReadNotEmptyString(), out Patron? found))
         {
-            return patron;
+            chosen = found;
+            return true;
         }
-        return null;
+        WriteError("Patron does not exist");
+        chosen = null;
+        return  false ;
     }
 
     
 
 
-    public static Book? ChooseFromExistingBooksMenu()
+    public static bool TryChooseFromExistingBooksMenu(out Book? chosen)
     {
         DisplayBooksInfo(Library.Books);
         WriteInfo("enter the book to choose(Id, Name or ...) : ");
-        Book? book = new();
-        if (Library.TryFindBookByKey(ReadNotEmptyString(), out book))
+        if (Library.TryFindBookByKey(ReadNotEmptyString(), out Book? found))
         {
-            return book;
+            chosen = found;
+            return true;
         }
-        return null;
+        WriteError("book does not exist");
+
+        chosen = null;
+        return false ;
     }
     
 
-    public static Loan? ChooseFromPatronLoansMenu(Patron patron)
+    public static bool TryChooseFromPatronLoansMenu(Patron patron,out Loan? chosen)
     {
         DisplayLoansInfo(patron.Loans);
         WriteInfo("enter the Loan to choose(loan Id or book title) : ");
-        Loan? loan = new();
-        if (patron.TryFindLoanByKey(ReadNotEmptyString(), out loan))
+        if (patron.TryFindLoanByKey(ReadNotEmptyString(), out Loan? found))
         {
-            return loan;
+            chosen = found;
+            return true;
         }
-        return null;
+        WriteError("loan does not exist");
+
+        chosen = null;
+        return false;
     }
 
     
@@ -143,48 +160,41 @@ public class Program
 
     public static void PatronManagementMenu()
     {
-        Patron? patron = ChooseFromExistingPatronsMenu();
-        if(patron is null)
+        if(TryChooseFromExistingPatronsMenu(out Patron? chosenPatron))
         {
-            WriteError("Patron not found!");
-            MainMenu();
+
+            WriteInfo("Patrons Management Menu:");
+            WriteLine("1)Borrow A Book");
+            WriteLine("2)Return A Book");
+            WriteLine("3)Last Menu");
+            switch (ReadKey().Key)
+            {
+                case ConsoleKey.D1:
+                case ConsoleKey.NumPad1:
+                    WriteLine();
+                    if (TryChooseFromExistingBooksMenu(out Book? chosenBook))
+                    {
+                        chosenPatron!.Borrow(chosenBook!);
+                    }
+                    break;
+                case ConsoleKey.D2:
+                case ConsoleKey.NumPad2:
+                    WriteLine();
+                    if (TryChooseFromPatronLoansMenu(chosenPatron!, out Loan? chosenLoan))
+                    {
+                        chosenLoan!.Return();
+                    }
+                    break;
+                case ConsoleKey.D3:
+                case ConsoleKey.NumPad3:
+                    break;
+                default:
+                    WriteError("you can only choose from the list");
+                    break;
+
+            }   
         }
-        WriteInfo("Patrons Management Menu:");
-        WriteLine("1)Borrow A Book");
-        WriteLine("2)Return A Book");
-        WriteLine("3)Last Menu");
-        switch(ReadKey().Key)
-        {
-            case ConsoleKey.D1:
-            case ConsoleKey.NumPad1:
-                WriteLine();
-                Book? toBeBorrowed = ChooseFromExistingBooksMenu();
-                if(toBeBorrowed is null)
-                {
-                    WriteError("book was not found");
-                    MainMenu();
-                }
-                patron.Borrow(toBeBorrowed);
-                MainMenu();
-                break;
-            case ConsoleKey.D2:
-            case ConsoleKey.NumPad2:
-                WriteLine();
-                Loan? toBeReturned = ChooseFromPatronLoansMenu(patron);
-                if(toBeReturned is null)
-                {
-                    WriteError("this patron has no such loans");
-                    MainMenu();
-                }
-                toBeReturned.Return();
-                MainMenu();
-                break;
-            case ConsoleKey.D3:
-            case ConsoleKey.NumPad3:
-                WriteLine();
-                MainMenu();
-                break;
-        }
+
 
     }
     

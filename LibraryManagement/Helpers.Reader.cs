@@ -50,12 +50,11 @@ namespace Helpers
         public static Patron GetPatronInfoFromUser()
         {
             Patron patron = new();
-            WriteLine();
             WriteInfo("Enter the Patrons's details:");
             Write("Name: ");
             patron.Name = ReadNotEmptyString();
             Write("Email: ");
-            patron.Email = ReadNotEmptyString();
+            patron.Email = ReadEmail();
             Write("Phone: ");
             patron.Phone = ReadNotEmptyString();
             Write("Address: ");
@@ -65,7 +64,6 @@ namespace Helpers
         public static Book GetBookInfoFromUser()
         {
             Book book = new();
-            WriteLine();
             WriteInfo("Enter the Book's details:");
             Write("Title: ");
             book.Title = ReadNotEmptyString();
